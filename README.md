@@ -2,7 +2,7 @@
 
 > Track, understand, and reduce your carbon footprint through personalized insights, interactive simulations, and actionable recommendations.
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-CarbonLens-22c55e?style=for-the-badge)](https://carbonlens.vercel.app)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-CarbonLens-22c55e?style=for-the-badge)](https://carbonlens2026.vercel.app/)
 
 ## 📋 Challenge Vertical
 
