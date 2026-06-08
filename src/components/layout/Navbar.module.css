@@ -149,7 +149,7 @@
 .hamburgerLine {
   display: block;
   width: 22px;
-  height: 2px;
+  height: 10px;
   background: var(--color-text-secondary);
   border-radius: var(--radius-full);
   transition: all var(--transition-smooth);
