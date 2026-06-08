@@ -27,6 +27,11 @@ import './styles/global.css';
 function PageRouter() {
   const { state } = useApp();
 
+  // Instantly scroll to top whenever the page changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [state.currentPage]);
+
   const renderPage = () => {
     switch (state.currentPage) {
       case 'calculator':

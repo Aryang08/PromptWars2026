@@ -8,10 +8,13 @@
     "build": "vite build",
     "start": "vite build --host",
     "lint": "eslint .",
+    "test": "vitest run",
+    "coverage": "vitest run --coverage",
     "preview": "vite preview"
   },
   "dependencies": {
     "chart.js": "^4.5.1",
+    "prop-types": "^15.8.1",
     "react": "^19.2.6",
     "react-chartjs-2": "^5.3.1",
     "react-dom": "^19.2.6"
@@ -20,6 +23,7 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^4.3.4",
+    "@vitest/coverage-v8": "^2.1.9",
     "vite": "^5.4.19",
     "vitest": "^2.1.9"
   }

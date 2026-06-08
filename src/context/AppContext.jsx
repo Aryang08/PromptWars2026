@@ -270,12 +270,31 @@ function appReducer(state, action) {
     case ActionTypes.IMPORT_DATA:
       try {
         const imported = JSON.parse(action.payload);
+        
+        // Security: Validate schema structure to prevent prototype pollution and XSS
+        if (!imported || typeof imported !== 'object') {
+          throw new Error('Invalid format: Expected JSON object');
+        }
+        
+        // Safe deep mapping
+        const safeImport = {
+          calculatorData: imported.calculatorData || state.calculatorData,
+          results: imported.results || null,
+          snapshots: Array.isArray(imported.snapshots) ? imported.snapshots : [],
+          unlockedBadges: Array.isArray(imported.unlockedBadges) ? imported.unlockedBadges : [],
+          completedActions: Array.isArray(imported.completedActions) ? imported.completedActions : [],
+          profile: { ...state.profile, ...(imported.profile || {}) },
+          hasCalculated: Boolean(imported.hasCalculated),
+          theme: ['light', 'dark'].includes(imported.theme) ? imported.theme : state.theme,
+        };
+
         return {
           ...state,
-          ...imported,
-          currentPage: imported.hasCalculated ? 'dashboard' : 'landing',
+          ...safeImport,
+          currentPage: safeImport.hasCalculated ? 'dashboard' : 'landing',
         };
-      } catch {
+      } catch (error) {
+        console.error('Security Warning: Data import rejected due to validation failure.', error);
         return state;
       }
 

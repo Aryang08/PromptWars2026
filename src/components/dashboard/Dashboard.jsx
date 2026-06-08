@@ -7,7 +7,7 @@
  * @module Dashboard
  */
 
-import { useMemo } from 'react';
+import { useMemo, useEffect } from 'react';
 import {
   Chart as ChartJS,
   ArcElement,
@@ -89,6 +89,14 @@ export default function Dashboard() {
   if (!results) return null;
 
   const { breakdown, percentages, comparison, insight } = results;
+
+  // Auto-scroll down to charts after giving the user time to read the top hero section
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      document.getElementById('dashboard-charts')?.scrollIntoView({ behavior: 'smooth' });
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, []);
 
   /** Doughnut chart data */
   const doughnutData = useMemo(
@@ -237,11 +245,11 @@ export default function Dashboard() {
     scales: {
       x: {
         grid: { color: 'rgba(148, 163, 184, 0.08)' },
-        ticks: { color: CHART_DEFAULTS.color, font: { family: 'Inter', size: 11 } },
+        ticks: { color: getChartColor(), font: { family: 'Inter', size: 11 } },
       },
       y: {
         grid: { color: 'rgba(148, 163, 184, 0.08)' },
-        ticks: { color: CHART_DEFAULTS.color, font: { family: 'Inter', size: 11 } },
+        ticks: { color: getChartColor(), font: { family: 'Inter', size: 11 } },
       },
     },
   };
@@ -320,7 +328,7 @@ export default function Dashboard() {
         <TangibleImpact />
 
         {/* ── Charts Row ───────────────────────────────────────── */}
-        <div className={styles.chartsRow}>
+        <div id="dashboard-charts" className={styles.chartsRow}>
           {/* Doughnut */}
           <section className={`glass-card ${styles.chartCard}`} aria-label="Emissions breakdown chart">
             <h3 className={styles.chartTitle}>Breakdown by Category</h3>

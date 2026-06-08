@@ -7,6 +7,7 @@
  * @module MetricCard
  */
 
+import PropTypes from 'prop-types';
 import AnimatedCounter from '../common/AnimatedCounter.jsx';
 import styles from './MetricCard.module.css';
 
@@ -84,3 +85,13 @@ export default function MetricCard({
     </div>
   );
 }
+
+MetricCard.propTypes = {
+  label: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
+  unit: PropTypes.string,
+  icon: PropTypes.string.isRequired,
+  trend: PropTypes.oneOf(['up', 'down', 'neutral']),
+  colorVar: PropTypes.string,
+  subtitle: PropTypes.string,
+};

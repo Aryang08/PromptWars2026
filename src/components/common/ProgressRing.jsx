@@ -7,6 +7,7 @@
  * @module ProgressRing
  */
 
+import PropTypes from 'prop-types';
 import styles from './ProgressRing.module.css';
 
 /**
@@ -79,3 +80,12 @@ export default function ProgressRing({
     </div>
   );
 }
+
+ProgressRing.propTypes = {
+  progress: PropTypes.number.isRequired,
+  size: PropTypes.number,
+  strokeWidth: PropTypes.number,
+  color: PropTypes.string,
+  label: PropTypes.string.isRequired,
+  children: PropTypes.node,
+};

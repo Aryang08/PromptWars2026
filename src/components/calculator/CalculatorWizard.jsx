@@ -43,6 +43,7 @@ export default function CalculatorWizard() {
   const handleNext = useCallback(() => {
     if (!isLastStep) {
       setCurrentStep((prev) => prev + 1);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, [isLastStep]);
 
@@ -50,6 +51,7 @@ export default function CalculatorWizard() {
   const handlePrev = useCallback(() => {
     if (!isFirstStep) {
       setCurrentStep((prev) => prev - 1);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, [isFirstStep]);
 

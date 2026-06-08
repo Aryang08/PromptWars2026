@@ -9,6 +9,7 @@
  */
 
 import { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 
 /**
  * Easing function (ease-out cubic) for natural deceleration.
@@ -95,3 +96,12 @@ export default function AnimatedCounter({
     </span>
   );
 }
+
+AnimatedCounter.propTypes = {
+  value: PropTypes.number.isRequired,
+  duration: PropTypes.number,
+  decimals: PropTypes.number,
+  suffix: PropTypes.string,
+  prefix: PropTypes.string,
+  className: PropTypes.string,
+};
