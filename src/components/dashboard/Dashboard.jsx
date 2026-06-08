@@ -55,19 +55,19 @@ const centerTextPlugin = {
     const { top, bottom, left, right } = chartArea;
     const width = right - left;
     const height = bottom - top;
-    
+
     ctx.restore();
     const fontSize = (height / 160).toFixed(2);
     ctx.font = `bold ${fontSize}em Inter, sans-serif`;
     ctx.textBaseline = 'middle';
     ctx.fillStyle = getCenterColor();
-    
+
     const total = chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
     const text = Math.round(total).toLocaleString();
     const textX = left + Math.round((width - ctx.measureText(text).width) / 2);
     const textY = top + height / 2 - 12;
     ctx.fillText(text, textX, textY);
-    
+
     ctx.font = `normal ${fontSize * 0.4}em Inter, sans-serif`;
     ctx.fillStyle = getChartColor();
     const label = 'kg CO₂e';
@@ -94,7 +94,7 @@ export default function Dashboard() {
   useEffect(() => {
     const timer = setTimeout(() => {
       document.getElementById('dashboard-charts')?.scrollIntoView({ behavior: 'smooth' });
-    }, 1500);
+    }, 2000);
     return () => clearTimeout(timer);
   }, []);
 
