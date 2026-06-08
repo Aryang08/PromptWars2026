@@ -1,0 +1,48 @@
+/* ==========================================================================
+   Common Page Styles (empty states, page wrappers)
+   ========================================================================== */
+
+.emptyState {
+  min-height: calc(100vh - var(--navbar-height));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8);
+}
+
+.emptyContent {
+  text-align: center;
+  max-width: 400px;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.emptyIcon {
+  font-size: 64px;
+  display: block;
+  margin-bottom: var(--space-6);
+  opacity: 0.7;
+}
+
+.emptyTitle {
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--space-3);
+  color: var(--color-text-primary);
+}
+
+.emptyText {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-8);
+  line-height: var(--line-height-relaxed);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

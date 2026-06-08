@@ -1,0 +1,664 @@
+/* ==========================================================================
+   Landing Page Styles — Enhanced with visuals and illustrations
+   ========================================================================== */
+
+.landing {
+  overflow: hidden;
+}
+
+/* ── Hero Section ───────────────────────────────────────────────────────── */
+
+.hero {
+  position: relative;
+  min-height: calc(100vh - var(--navbar-height));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-16) var(--space-6);
+  text-align: center;
+  overflow: hidden;
+}
+
+.heroBackground {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Gradient orbs */
+.orb1,
+.orb2,
+.orb3 {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+}
+
+.orb1 {
+  width: 500px;
+  height: 500px;
+  background: var(--color-green-500);
+  top: -100px;
+  right: -100px;
+  animation: float 8s ease-in-out infinite;
+}
+
+.orb2 {
+  width: 400px;
+  height: 400px;
+  background: var(--color-blue-500);
+  bottom: -50px;
+  left: -100px;
+  animation: float 10s ease-in-out infinite reverse;
+}
+
+.orb3 {
+  width: 300px;
+  height: 300px;
+  background: var(--color-purple-400);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: float 12s ease-in-out infinite;
+}
+
+/* Subtle dot grid background */
+.gridPattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 70%);
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+/* ── Earth Illustration ──────────────────────────────────────────────────── */
+
+.earthContainer {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 240px;
+  height: 240px;
+  margin-bottom: var(--space-6);
+}
+
+.earthSvg {
+  position: relative;
+  z-index: 2;
+  animation: float 5s ease-in-out infinite;
+  filter: drop-shadow(0 0 30px rgba(34, 197, 94, 0.15));
+}
+
+/* Atmosphere rings */
+.atmosphereRing {
+  position: absolute;
+  width: var(--ring-size);
+  height: var(--ring-size);
+  border-radius: 50%;
+  border: 1px solid rgba(74, 222, 128, var(--ring-opacity));
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: pulseRing 4s ease-in-out infinite;
+}
+
+.atmosphereRing:nth-child(2) { animation-delay: 0.5s; }
+.atmosphereRing:nth-child(3) { animation-delay: 1s; }
+
+/* Floating particles around earth */
+.particle {
+  position: absolute;
+  font-size: 18px;
+  top: 50%;
+  left: 50%;
+  transform: translate(var(--x), var(--y));
+  animation: particleFloat 6s ease-in-out infinite;
+  animation-delay: var(--delay);
+  opacity: 0.5;
+  z-index: 1;
+}
+
+/* ── Hero Text & CTA ────────────────────────────────────────────────────── */
+
+.heroTitle {
+  font-size: clamp(var(--font-size-3xl), 5vw, var(--font-size-6xl));
+  font-weight: var(--font-weight-bold);
+  line-height: 1.1;
+  margin-bottom: var(--space-6);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.heroHighlight {
+  background: linear-gradient(135deg, var(--color-green-400), var(--color-green-300));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroSubtitle {
+  font-size: clamp(var(--font-size-base), 2vw, var(--font-size-xl));
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--space-8);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.heroCta {
+  display: flex;
+  gap: var(--space-4);
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: var(--space-6);
+}
+
+.ctaButton {
+  font-size: var(--font-size-lg) !important;
+  padding: var(--space-4) var(--space-10) !important;
+}
+
+.ctaButtonSecondary {
+  padding: var(--space-4) var(--space-10) !important;
+}
+
+/* Trust badges */
+.trustBadges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.trustItem {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+}
+
+.trustDivider {
+  color: var(--color-text-tertiary);
+  opacity: 0.3;
+}
+
+/* ── Stats Section ──────────────────────────────────────────────────────── */
+
+.stats {
+  padding: var(--space-16) var(--space-6);
+  background: var(--color-bg-secondary);
+  position: relative;
+}
+
+.statsHeader {
+  text-align: center;
+  margin-bottom: var(--space-10);
+}
+
+.statsTitle {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-3);
+}
+
+.statsSubtitle {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-6);
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.statCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-8) var(--space-6);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.statCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.statIcon {
+  font-size: 40px;
+  margin-bottom: var(--space-3);
+  line-height: 1;
+}
+
+.statValue {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-green-400);
+  line-height: 1.2;
+}
+
+.statLabel {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+  margin-top: var(--space-2);
+}
+
+/* ── How It Works ────────────────────────────────────────────────────────── */
+
+.howItWorks {
+  padding: var(--space-24) var(--space-6);
+  position: relative;
+}
+
+.howInner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.stepsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-6);
+  margin-top: var(--space-4);
+}
+
+.stepCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-6) var(--space-4);
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
+}
+
+/* Dashed connector between steps */
+.stepConnector {
+  position: absolute;
+  top: 54px;
+  left: calc(50% + 32px);
+  width: calc(100% - 32px);
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(148, 163, 184, 0.15) 0,
+    rgba(148, 163, 184, 0.15) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+}
+
+.stepNumber {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  border: 2px solid;
+  margin-bottom: var(--space-4);
+}
+
+.stepIconBubble {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-4);
+}
+
+.stepIcon {
+  font-size: 28px;
+}
+
+.stepTitle {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.stepDescription {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+  line-height: var(--line-height-relaxed);
+}
+
+/* ── Features Section ───────────────────────────────────────────────────── */
+
+.features {
+  padding: var(--space-24) var(--space-6);
+  background: var(--color-bg-secondary);
+  position: relative;
+}
+
+.featuresInner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  position: relative;
+}
+
+.moleculeDecor {
+  position: absolute;
+  top: -40px;
+  right: -60px;
+  opacity: 0.3;
+  animation: rotateSlow 30s linear infinite;
+  pointer-events: none;
+}
+
+.moleculeSvg {
+  width: 200px;
+  height: 200px;
+}
+
+.sectionTitle {
+  text-align: center;
+  font-size: clamp(var(--font-size-2xl), 3vw, var(--font-size-4xl));
+  margin-bottom: var(--space-4);
+  position: relative;
+  z-index: 2;
+}
+
+.sectionSubtitle {
+  text-align: center;
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  margin: 0 auto var(--space-12);
+  position: relative;
+  z-index: 2;
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-6);
+  position: relative;
+  z-index: 2;
+}
+
+.featureCard {
+  padding: var(--space-8);
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
+  cursor: default;
+  border: 1px solid var(--glass-border) !important;
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth), border-color var(--transition-smooth);
+}
+
+.featureCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-border-hover) !important;
+}
+
+.featureIconWrap {
+  width: 56px;
+  height: 56px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-4);
+}
+
+.featureIcon {
+  font-size: 28px;
+  display: block;
+}
+
+.featureTitle {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-3);
+  color: var(--color-text-primary);
+}
+
+.featureDescription {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+}
+
+/* ── Data Sources Banner ─────────────────────────────────────────────────── */
+
+.dataBanner {
+  padding: var(--space-12) var(--space-6);
+  background: var(--color-bg-primary);
+  border-top: 1px solid var(--glass-border);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.dataBannerInner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.dataBannerTitle {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-8);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.dataSources {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-10);
+  flex-wrap: wrap;
+}
+
+.dataSource {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  min-width: 120px;
+}
+
+.dataSourceIcon {
+  font-size: 32px;
+  margin-bottom: var(--space-1);
+}
+
+.dataSourceName {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+.dataSourceLabel {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-tertiary);
+}
+
+/* ── Bottom CTA ─────────────────────────────────────────────────────────── */
+
+.ctaBottom {
+  padding: var(--space-24) var(--space-6);
+  background: linear-gradient(
+    180deg,
+    var(--color-bg-primary),
+    var(--color-bg-secondary)
+  );
+  position: relative;
+}
+
+.ctaBottomInner {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.ctaDecor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.leafLeft {
+  position: absolute;
+  font-size: 48px;
+  left: -80px;
+  top: 20px;
+  opacity: 0.15;
+  transform: rotate(-30deg);
+  animation: float 6s ease-in-out infinite;
+}
+
+.leafRight {
+  position: absolute;
+  font-size: 42px;
+  right: -70px;
+  bottom: 10px;
+  opacity: 0.15;
+  transform: rotate(20deg);
+  animation: float 7s ease-in-out infinite reverse;
+}
+
+.ctaBottomTitle {
+  font-size: var(--font-size-3xl);
+  margin-bottom: var(--space-4);
+}
+
+.ctaBottomText {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-8);
+}
+
+/* ── Animations ─────────────────────────────────────────────────────────── */
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.05); }
+}
+
+@keyframes pulseRing {
+  0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.5; transform: translate(-50%, -50%) scale(1.05); }
+}
+
+@keyframes particleFloat {
+  0%, 100% {
+    transform: translate(var(--x), var(--y));
+    opacity: 0.5;
+  }
+  25% {
+    transform: translate(calc(var(--x) + 8px), calc(var(--y) - 12px));
+    opacity: 0.7;
+  }
+  50% {
+    transform: translate(calc(var(--x) - 5px), calc(var(--y) + 6px));
+    opacity: 0.4;
+  }
+  75% {
+    transform: translate(calc(var(--x) + 10px), calc(var(--y) + 10px));
+    opacity: 0.6;
+  }
+}
+
+@keyframes rotateSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .hero {
+    padding: var(--space-10) var(--space-4);
+    min-height: auto;
+  }
+
+  .earthContainer {
+    width: 180px;
+    height: 180px;
+  }
+
+  .earthSvg {
+    width: 90px;
+    height: 90px;
+  }
+
+  .particle {
+    font-size: 14px;
+  }
+
+  .stepsGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .stepConnector {
+    display: none;
+  }
+
+  .featuresGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .dataSources {
+    gap: var(--space-6);
+  }
+
+  .moleculeDecor {
+    display: none;
+  }
+
+  .leafLeft,
+  .leafRight {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .trustBadges {
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .trustDivider {
+    display: none;
+  }
+}

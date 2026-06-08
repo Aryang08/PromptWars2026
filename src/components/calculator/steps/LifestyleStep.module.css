@@ -1,0 +1,111 @@
+/* ==========================================================================
+   LifestyleStep — Shopping, electronics, water, recycling selectors
+   ========================================================================== */
+
+.step {
+  animation: stepFadeInUp 0.45s ease forwards;
+}
+
+@keyframes stepFadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Section ─────────────────────────────────────────────────────────────── */
+
+.section {
+  margin-bottom: var(--space-8);
+}
+
+.sectionTitle {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.sectionIcon {
+  font-size: var(--font-size-xl);
+}
+
+/* ── Card Grid ───────────────────────────────────────────────────────────── */
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-3);
+}
+
+.cardGrid3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+}
+
+@media (max-width: 768px) {
+  .cardGrid,
+  .cardGrid3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ── Selection Card ──────────────────────────────────────────────────────── */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-3);
+  background: var(--color-surface);
+  border: 2px solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+  text-align: center;
+  user-select: none;
+}
+
+.card:hover {
+  background: var(--color-surface-hover);
+  border-color: var(--color-border-hover);
+}
+
+.card.selected {
+  border-color: var(--color-green-500);
+  background: rgba(34, 197, 94, 0.08);
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.15);
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--color-green-400);
+  outline-offset: 2px;
+}
+
+.cardIcon {
+  font-size: 1.75rem;
+  line-height: 1;
+}
+
+.cardLabel {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-secondary);
+}
+
+.card.selected .cardLabel {
+  color: var(--color-green-400);
+}
+
+.cardDescription {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-tertiary);
+  line-height: var(--line-height-normal);
+}
+
+.card.selected .cardDescription {
+  color: var(--color-text-secondary);
+}

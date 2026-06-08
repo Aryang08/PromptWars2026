@@ -1,0 +1,266 @@
+/* ==========================================================================
+   TransportStep — Vehicle selection, distance sliders, flight inputs
+   ========================================================================== */
+
+.step {
+  animation: stepFadeInUp 0.45s ease forwards;
+}
+
+@keyframes stepFadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Section Headings ────────────────────────────────────────────────────── */
+
+.sectionTitle {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.sectionIcon {
+  font-size: var(--font-size-xl);
+}
+
+.section {
+  margin-bottom: var(--space-8);
+}
+
+/* ── Card Grid ───────────────────────────────────────────────────────────── */
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-3);
+}
+
+@media (max-width: 768px) {
+  .cardGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .cardGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-2);
+  }
+}
+
+/* ── Selection Card ──────────────────────────────────────────────────────── */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-4) var(--space-3);
+  background: var(--color-surface);
+  border: 2px solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+  text-align: center;
+  user-select: none;
+}
+
+.card:hover {
+  background: var(--color-surface-hover);
+  border-color: var(--color-border-hover);
+}
+
+.card.selected {
+  border-color: var(--color-green-500);
+  background: rgba(34, 197, 94, 0.08);
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.15);
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--color-green-400);
+  outline-offset: 2px;
+}
+
+.cardIcon {
+  font-size: 1.75rem;
+  line-height: 1;
+}
+
+.cardLabel {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+}
+
+.card.selected .cardLabel {
+  color: var(--color-green-400);
+}
+
+/* ── Slider Group ────────────────────────────────────────────────────────── */
+
+.sliderGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.sliderHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.sliderLabel {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+}
+
+.sliderValue {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-green-400);
+  font-variant-numeric: tabular-nums;
+}
+
+.slider {
+  width: 100%;
+  accent-color: var(--color-green-500);
+}
+
+/* ── Public Transport Row ────────────────────────────────────────────────── */
+
+.publicTransportRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  align-items: start;
+}
+
+@media (max-width: 480px) {
+  .publicTransportRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+.selectWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.select {
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+  transition: all var(--transition-fast);
+  width: 100%;
+}
+
+.select:hover {
+  border-color: var(--color-border-hover);
+}
+
+.select:focus {
+  border-color: var(--color-green-500);
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.15);
+  outline: none;
+}
+
+/* ── Flights Section ─────────────────────────────────────────────────────── */
+
+.flightRows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.flightRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  gap: var(--space-4);
+}
+
+@media (max-width: 480px) {
+  .flightRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-2);
+  }
+}
+
+.flightInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.flightLabel {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+}
+
+.flightSub {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-tertiary);
+}
+
+.numericSelector {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.numBtn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.numBtn:hover {
+  background: var(--color-surface-hover);
+  border-color: var(--color-green-500);
+}
+
+.numBtn:focus-visible {
+  outline: 2px solid var(--color-green-400);
+  outline-offset: 2px;
+}
+
+.numBtn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.numValue {
+  width: 36px;
+  text-align: center;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-green-400);
+  font-variant-numeric: tabular-nums;
+}
