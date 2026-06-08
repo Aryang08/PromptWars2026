@@ -196,9 +196,10 @@
   }
 
   .navItem {
-    padding: var(--space-4) var(--space-6);
+    padding: 20px 24px;
     font-size: var(--font-size-base);
     border-radius: var(--radius-lg);
+    min-height: 70px;
   }
 
   .navItemActive::after {
@@ -206,6 +207,6 @@
   }
 
   .navLabel {
-    font-size: var(--font-size-lg);
+    font-size: 1.25rem;
   }
 }
