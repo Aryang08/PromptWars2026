@@ -40,11 +40,10 @@ ChartJS.register(
   Filler
 );
 
-/** Chart.js default overrides for dark theme */
-const CHART_DEFAULTS = {
-  color: '#94a3b8',
-  borderColor: 'rgba(148, 163, 184, 0.1)',
-};
+/** Chart.js default overrides */
+const getChartColor = () => getComputedStyle(document.documentElement).getPropertyValue('--chart-text').trim() || '#94a3b8';
+const getGridColor = () => getComputedStyle(document.documentElement).getPropertyValue('--chart-grid').trim() || 'rgba(148, 163, 184, 0.1)';
+const getCenterColor = () => getComputedStyle(document.documentElement).getPropertyValue('--chart-center').trim() || '#f8fafc';
 
 /** Plugin to draw text in the center of the doughnut chart */
 const centerTextPlugin = {
@@ -61,7 +60,7 @@ const centerTextPlugin = {
     const fontSize = (height / 160).toFixed(2);
     ctx.font = `bold ${fontSize}em Inter, sans-serif`;
     ctx.textBaseline = 'middle';
-    ctx.fillStyle = '#f8fafc'; // Tailwind slate-50
+    ctx.fillStyle = getCenterColor();
     
     const total = chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
     const text = Math.round(total).toLocaleString();
@@ -70,7 +69,7 @@ const centerTextPlugin = {
     ctx.fillText(text, textX, textY);
     
     ctx.font = `normal ${fontSize * 0.4}em Inter, sans-serif`;
-    ctx.fillStyle = '#94a3b8'; // Tailwind slate-400
+    ctx.fillStyle = getChartColor();
     const label = 'kg CO₂e';
     const labelX = left + Math.round((width - ctx.measureText(label).width) / 2);
     const labelY = top + height / 2 + 18;
@@ -124,33 +123,28 @@ export default function Dashboard() {
     [breakdown]
   );
 
-  const doughnutOptions = {
+  const doughnutOptions = useMemo(() => ({
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
       legend: {
         position: 'right',
         labels: {
-          color: CHART_DEFAULTS.color,
+          color: getChartColor(),
           padding: 16,
-          usePointStyle: true,
-          pointStyleWidth: 12,
-          font: { family: 'Inter', size: 12 },
+          font: { family: 'Inter', size: 13 },
         },
       },
       tooltip: {
-        backgroundColor: 'rgba(17, 24, 39, 0.9)',
-        titleFont: { family: 'Inter' },
-        bodyFont: { family: 'Inter' },
+        backgroundColor: 'rgba(15, 23, 42, 0.9)',
+        titleFont: { family: 'Inter', size: 14 },
+        bodyFont: { family: 'Inter', size: 13 },
         padding: 12,
         cornerRadius: 8,
-        callbacks: {
-          label: (ctx) => ` ${ctx.parsed} kg CO₂e/month`,
-        },
       },
     },
     cutout: '65%',
-  };
+  }), [state.theme]);
 
   /** Comparison bar chart */
   const nationalAvg = NATIONAL_AVERAGES[profile.country] || NATIONAL_AVERAGES.global;
@@ -180,34 +174,29 @@ export default function Dashboard() {
     [results.total, nationalAvg, profile.country]
   );
 
-  const barOptions = {
+  const barOptions = useMemo(() => ({
     responsive: true,
     maintainAspectRatio: false,
     indexAxis: 'y',
     plugins: {
       legend: { display: false },
       tooltip: {
-        backgroundColor: 'rgba(17, 24, 39, 0.9)',
-        titleFont: { family: 'Inter' },
-        bodyFont: { family: 'Inter' },
+        backgroundColor: 'rgba(15, 23, 42, 0.9)',
         padding: 12,
-        cornerRadius: 8,
-        callbacks: {
-          label: (ctx) => ` ${ctx.parsed.x} kg CO₂e/month`,
-        },
       },
     },
     scales: {
-      x: {
-        grid: { color: 'rgba(148, 163, 184, 0.08)' },
-        ticks: { color: CHART_DEFAULTS.color, font: { family: 'Inter', size: 11 } },
-      },
       y: {
+        beginAtZero: true,
+        grid: { color: getGridColor() },
+        ticks: { color: getChartColor(), font: { family: 'Inter' } },
+      },
+      x: {
         grid: { display: false },
-        ticks: { color: CHART_DEFAULTS.color, font: { family: 'Inter', size: 12 } },
+        ticks: { color: getChartColor(), font: { family: 'Inter' } },
       },
     },
-  };
+  }), [state.theme]);
 
   /** Trend line chart */
   const hasTrend = snapshots.length > 1;

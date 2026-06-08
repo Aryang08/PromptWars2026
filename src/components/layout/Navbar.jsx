@@ -74,18 +74,29 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <button
-          className={`${styles.hamburger} ${mobileMenuOpen ? styles.hamburgerOpen : ''}`}
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-expanded={mobileMenuOpen}
-          aria-controls="mobile-menu"
-          aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
-          id="nav-hamburger"
-        >
-          <span className={styles.hamburgerLine} />
-          <span className={styles.hamburgerLine} />
-          <span className={styles.hamburgerLine} />
-        </button>
+        <div className={styles.navControls}>
+          <button
+            className={styles.themeToggle}
+            onClick={() => actions.toggleTheme()}
+            aria-label="Toggle Theme"
+            title={`Switch to ${state.theme === 'dark' ? 'light' : 'dark'} mode`}
+          >
+            {state.theme === 'dark' ? '☀️' : '🌙'}
+          </button>
+
+          <button
+            className={`${styles.hamburger} ${mobileMenuOpen ? styles.hamburgerOpen : ''}`}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-menu"
+            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+            id="nav-hamburger"
+          >
+            <span className={styles.hamburgerLine} />
+            <span className={styles.hamburgerLine} />
+            <span className={styles.hamburgerLine} />
+          </button>
+        </div>
       </nav>
     </header>
   );

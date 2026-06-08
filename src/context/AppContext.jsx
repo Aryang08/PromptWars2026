@@ -67,6 +67,8 @@ const initialState = {
   currentPage: 'landing',
   /** Whether calculation has been done at least once */
   hasCalculated: false,
+  /** Current UI theme ('dark' or 'light') */
+  theme: 'dark',
 };
 
 /**
@@ -105,6 +107,7 @@ function saveState(state) {
       completedActions: state.completedActions,
       profile: state.profile,
       hasCalculated: state.hasCalculated,
+      theme: state.theme,
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(toSave));
   } catch (error) {
@@ -128,6 +131,7 @@ export const ActionTypes = {
   MARK_DATA_EXPORTED: 'MARK_DATA_EXPORTED',
   RESET_DATA: 'RESET_DATA',
   IMPORT_DATA: 'IMPORT_DATA',
+  TOGGLE_THEME: 'TOGGLE_THEME',
 };
 
 /**
@@ -275,6 +279,12 @@ function appReducer(state, action) {
         return state;
       }
 
+    case ActionTypes.TOGGLE_THEME:
+      return {
+        ...state,
+        theme: state.theme === 'dark' ? 'light' : 'dark',
+      };
+
     default:
       return state;
   }
@@ -319,6 +329,11 @@ export function AppProvider({ children }) {
   useEffect(() => {
     saveState(state);
   }, [state]);
+
+  // Apply theme to document element
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', state.theme);
+  }, [state.theme]);
 
   // Convenience action creators
   const actions = {
@@ -373,6 +388,10 @@ export function AppProvider({ children }) {
     ),
     resetData: useCallback(
       () => dispatch({ type: ActionTypes.RESET_DATA }),
+      []
+    ),
+    toggleTheme: useCallback(
+      () => dispatch({ type: ActionTypes.TOGGLE_THEME }),
       []
     ),
   };

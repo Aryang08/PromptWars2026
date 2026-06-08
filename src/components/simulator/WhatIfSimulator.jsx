@@ -24,6 +24,9 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 const CATEGORIES = ['transport', 'energy', 'diet', 'lifestyle'];
 
+const getChartColor = () => getComputedStyle(document.documentElement).getPropertyValue('--chart-text').trim() || '#94a3b8';
+const getCenterColor = () => getComputedStyle(document.documentElement).getPropertyValue('--chart-center').trim() || '#f8fafc';
+
 /** Plugin to draw text in the center of the doughnut chart */
 const centerTextPlugin = {
   id: 'centerText',
@@ -39,7 +42,7 @@ const centerTextPlugin = {
     const fontSize = (height / 160).toFixed(2);
     ctx.font = `bold ${fontSize}em Inter, sans-serif`;
     ctx.textBaseline = 'middle';
-    ctx.fillStyle = '#f8fafc';
+    ctx.fillStyle = getCenterColor();
     
     const total = chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
     const text = Math.round(total).toLocaleString();
@@ -48,7 +51,7 @@ const centerTextPlugin = {
     ctx.fillText(text, textX, textY);
     
     ctx.font = `normal ${fontSize * 0.4}em Inter, sans-serif`;
-    ctx.fillStyle = '#94a3b8';
+    ctx.fillStyle = getChartColor();
     const label = 'kg CO₂e';
     const labelX = left + Math.round((width - ctx.measureText(label).width) / 2);
     const labelY = top + height / 2 + 18;
@@ -129,14 +132,14 @@ export default function WhatIfSimulator() {
     [projected]
   );
 
-  const chartOptions = {
+  const chartOptions = useMemo(() => ({
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
       legend: {
         position: 'right',
         labels: {
-          color: '#94a3b8',
+          color: getChartColor(),
           padding: 14,
           usePointStyle: true,
           font: { family: 'Inter', size: 12 },
@@ -154,7 +157,7 @@ export default function WhatIfSimulator() {
       },
     },
     cutout: '60%',
-  };
+  }), [state.theme]);
 
   return (
     <div className={styles.simulator}>

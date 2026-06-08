@@ -6,7 +6,7 @@
   position: sticky;
   top: 0;
   z-index: var(--z-sticky);
-  background: rgba(10, 15, 28, 0.8);
+  background: var(--color-bg-glass);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--glass-border);
@@ -109,6 +109,32 @@
   line-height: 1;
 }
 
+.navControls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.themeToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  border: 1px solid var(--glass-border);
+  color: var(--color-text-primary);
+  font-size: 20px;
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+}
+
+.themeToggle:hover {
+  background: var(--color-surface-hover);
+  transform: translateY(-2px);
+}
+
 /* Hamburger */
 .hamburger {
   display: none;
@@ -157,7 +183,7 @@
     align-items: stretch;
     padding: var(--space-6);
     gap: var(--space-2);
-    background: rgba(10, 15, 28, 0.95);
+    background: var(--color-bg-primary);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     transform: translateX(100%);

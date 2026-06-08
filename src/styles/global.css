@@ -216,7 +216,7 @@ p {
   border-radius: inherit;
   background: radial-gradient(
     600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(255, 255, 255, 0.08),
+    var(--spotlight-glow-card),
     transparent 40%
   );
   opacity: 0;
@@ -288,7 +288,7 @@ p {
   border-radius: inherit;
   background: radial-gradient(
     200px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(255, 255, 255, 0.3),
+    var(--spotlight-glow-btn),
     transparent 60%
   );
   opacity: 0;
